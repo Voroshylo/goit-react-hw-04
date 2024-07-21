@@ -5,7 +5,7 @@ import ImageGallery from '../src/ImageGallery/ImageGallery'
 import './App.css'
 import axios from 'axios'
 
-const API_KEY = 'YOUR_UNSPLASH_API_KEY'
+const API_KEY = 'QxwtyiynyLrOT1cpYeYexFds8RMCeu7pxWoIvifoCIY'
 const BASE_URL = 'https://api.unsplash.com';
 
 const App = () => {

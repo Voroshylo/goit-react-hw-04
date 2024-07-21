@@ -2,12 +2,12 @@ import css from './ImageCard.module.css'
 
 
 const ImageCard = ({ image }) => {
-  const { url, alt_description } = image;
+  const { urls, alt_description } = image;
   return (
     <div className={css.div}>
       <img
         className={css.img}
-        src={url.small}
+        src={urls.small}
         alt={alt_description}
       />
     </div>
