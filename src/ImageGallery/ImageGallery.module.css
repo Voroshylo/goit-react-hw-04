@@ -1,10 +1,4 @@
 .ul{
-display: flex;
-flex-wrap: wrap;
-gap: 16px;
-}
-
-.li{
   flex-basis: calc((100% / 4) - 16px);
   display: block;
   border-radius: 8px;
@@ -12,4 +6,10 @@ gap: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   text-decoration: none;
+}
+
+.li{
+    display: flex;
+  justify-content: center;
+  align-items: center;
 }
