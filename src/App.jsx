@@ -63,7 +63,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className='div'>
       <SearchBar onSubmit={handleSearchSubmit} />
       {loading && <Loader />}
       {error && <ErrorMessage message={error} />}
@@ -71,7 +71,7 @@ const App = () => {
       {images.length > 0 && !loading && <LoadMoreBtn onClick={() => setPage(prevPage => prevPage + 1)} />}
       {showModal && <ImageModal isOpen={showModal} onRequestClose={closeModal} image={modalImage} />}
       <Toaster />
-    </>
+    </div>
   );
 };
 
