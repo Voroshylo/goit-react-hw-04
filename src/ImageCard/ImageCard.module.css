@@ -1,0 +1,17 @@
+
+.div{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+
+.img{
+  width: 400px;
+  height: 320px;
+  border-radius: 8px;
+}
