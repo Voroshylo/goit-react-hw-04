@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 import SearchBar from '../src/SearchBar/SearchBar'
 import ImageGallery from '../src/ImageGallery/ImageGallery'
+import Loader from '../src/Loader/Loader'
+import ErrorMessage from '../src/ErrorMessage/ErrorMessage'
+import LoadMoreBtn from '../src/LoadMoreBtn/LoadMoreBtn'
+import ImageModal from '../src/ImageModal/ImageModal'
 import './App.css'
 import axios from 'axios'
 
@@ -15,6 +19,8 @@ const App = () => {
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+  const[modalImage, setModalImage] = useState(null)
 
 
   useEffect(() => {
@@ -46,13 +52,28 @@ const App = () => {
     setQuery(newQuery);
     setImages([]);
     setPage(1)
-}
+  }
+  
+  const openModal = image => {
+    setModalImage(image);
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+    setModalImage(null)
+  }
 
   return (
-    <>
+    <div>
       <SearchBar onSubmit={handleSearchSubmit} />
-      <ImageGallery images={images}/>
-    </>
+      {error && <ErrorMessage message={error}/>}
+      <ImageGallery images={images} onImageClick={openModal} />
+      {loading && <Loader />}
+      {images.length > 0 && !loading && <LoadMoreBtn onClick={() => setPage(prevPage => prevPage + 1)} />}
+      {showModal && <ImageModal isOpen={showModal} onRequestClose={closeModal} image={modalImage} />}
+      <Toaster/>
+    </div>
   )
 }
 
