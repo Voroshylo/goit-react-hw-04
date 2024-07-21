@@ -1,25 +1,44 @@
-// import { useEffect, useState } from "react";
-// import axios from 'axios'
+import { useState } from "react";
+import toast from 'react-hot-toast'
 import css from './SearchBar.module.css'
 
 
-const SearchBAr = () => {
+const SearchBar = ({ onSubmit }) => {
+  const [query, setQuery] = useState('');
+  const handleInputChange = evt => {
+    setQuery(evt.target.value)
+  };
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    if (query.trim() === '') {
+      toast.error('Please enter a search query');
+      return;
+    }
+    onSubmit(query);
+    setQuery('');
+  }
   return (
     <div className={css.div}>
-      <form >
-    <label className={css.label}>
-      <span className={css.cpan}>
-        Search
-      </span>
-    </label>
+      <form
+        className={css.form}
+      onSubmit={handleSubmit}
+      >
     < input
-    className={css.input}
-          placeholder='search'
-          type='text'
-          name='topic'/>
+          className={css.input}
+          placeholder='Search...'
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+        />
+        <button
+          type="submit"
+          className={css.btn}>
+          Search
+        </button>
       </form>
     </div>
   )
 }
 
-export default SearchBAr
+export default SearchBar
